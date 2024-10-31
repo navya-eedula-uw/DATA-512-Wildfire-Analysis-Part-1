@@ -44,6 +44,23 @@ https://aqs.epa.gov/data/api/
 ### Rate Limits
 - Please refer to [EPA's AirData FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata) for current rate limits
 
+# Project Workflow
+
+1. **data_acquisition.ipynb**  
+This notebook retrieves the wildland fire dataset from the USGS, computes the distance of each fire from Centennial, filters the dataset for the years 1964 to 2024, and produces two CSV files containing selected columns. One file includes all fires that occurred during this time frame, while the other focuses on fires within a 650-mile radius of Madison.
+
+2. **epi_air_quality_history_example.ipynb**  
+This notebook is designed to obtain AQI data from an API, clean the dataset, calculate any missing AQI values, and ultimately generate a CSV file containing yearly AQI estimates from 1964 to 2024.
+
+3. **smoke_estimate.ipynb**  
+This notebook utilizes the files created by the previous notebooks to calculate smoke estimates and compare these estimates with AQI data for validation purposes.
+
+4. **modelling.ipynb**  
+This notebook is employed to develop a time series forecasting model based on smoke estimates, aiming to forecast smoke levels for the next 25 years.
+
+5. **data_visualizations.ipynb**  
+This notebook analyzes the data generated thus far using visual representations. It creates three specific visualizations as outlined in the project requirement document.
+
 # Wildfire Data
 ### Dataset
 The [Combined wildland fire datasets for the United States and certain territories](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81), [1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset has details about all wildfires that have happened over the years all over the US. This dataset was collected and aggregated by the US Geological Survey. The dataset is relatively well documented. The dataset provides fire polygons in ArcGIS and GeoJSON formats. 
@@ -71,6 +88,11 @@ I created an annual estimate of wildfire smoke for my assigned city. This estima
 Why was this an estimate of fire smoke? These figures were estimates due to several challenges that weren't easy to address, combined with necessary simplifications to make the course project manageable within a few weeks. For example, an accurate smoke impact assessment would have taken into account factors like wind direction over several days, the intensity of the fire, and its duration. However, the fire polygon data only provided a reliable year for each fire, without specific start and end dates.
 
 The code for this can be found in the [smoke_estimate.ipynb](smoke_estimate.ipynb) notebook. Running this notebook end-to-end should produce smoke estimate values originted from wildfires from the years 1964-2020 wihin 650 miles of Centennial, CO.
+
+![image](https://github.com/user-attachments/assets/97ded08d-bf3e-45eb-a5b6-db3442b2add9)
+
+The above line chart shows the trends of two different variables—Average AQI (Air Quality Index) and Smoke Estimates—over time, from 1964 to 2024. Both variables are normalized on a scale from 0 to 1 to allow comparison.
+
 
 ### Methodology
 I formulated the smoke estimate by incorporating several factors, starting with the **size factor**, which uses a logarithmic transformation of the fire's area in acres to normalize values and assess its correlation with smoke production. The **duration factor** estimates the burn duration based on the fire's perimeter and area, capping the maximum duration at 30 days to reflect realistic limits. Additionally, the **circleness scale** measures the perimeter's circularity, suggesting that more circular fires tend to produce more smoke due to uniform fuel and wind conditions. A categorical variable based on fire classification assigns weights to different fire types, giving higher importance to uncontrolled wildfires. The **distance decay factor** quantifies the impact of proximity to the fire, using a quadratic decay function to reflect reduced smoke effects with increased distance. The final smoke impact calculation combines these factors multiplicatively, offering a comprehensive estimate. Although the model includes several parameters derived from domain knowledge, limitations exist, such as the simplification of atmospheric dynamics and the lack of direct weather data. Future enhancements could involve incorporating additional variables like fuel type, terrain complexity, and real-time weather conditions to improve accuracy and reliability.
