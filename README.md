@@ -1,116 +1,254 @@
-# DATA-512: Wildfire Analysis (Part-1)
+## Wildfire Analysis - Part 1
+
+### Overview
+
+This repository contains the first part of a project aimed at analyzing wildfires using data-driven approaches. The project is part of the DATA 512 course and focuses on exploring wildfire patterns, trends, and their implications through data analysis and visualization techniques.
 
 More and more frequently summers in the western US have been characterized by wildfires with smoke billowing across multiple western states. There are many proposed causes for this: climate change, US Forestry policy, growing awareness, just to name a few. Regardless of the cause, the impact of wildland fires is widespread as wildfire smoke reduces the air quality of many cities. There is a growing body of work pointing to the negative impacts of smoke on health, tourism, property, and other aspects of society.
-The course project will require that you analyze wildfire impacts on a specific city in the US. The end goal is to be able to inform policy makers, city managers, city councils, or other civic institutions, to make an informed plan for how they could or whether they should make plans to mitigate future impacts from wildfires.
 
-### License
+The primary goal of this project is to analyze wildfire data to uncover trends, patterns, and potential causes. This analysis can help in understanding the impact of wildfires on the economy in Centennial, Colorado and the broader Denver-Aurora-Lakewood region, while providing insights for policymakers to mitigate wildfire risks.
 
+
+The course project required me to analyze wildfire impacts on a specific city in the US. The end goal is to be able to inform policy makers, city managers, city councils, or other civic institutions, to make an informed plan for how they could or whether they should make plans to mitigate future impacts from wildfires.
+
+---
+
+### Installation and Setup
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/navya-eedula-uw/DATA-512-Wildfire-Analysis-Part-1.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd DATA-512-Wildfire-Analysis-Part-1
+   ```
+
+---
+
+### Usage
+
+To execute the analysis:
+
+1. Open each of the Jupyter Notebook file in your preferred environment:
+   ```
+   jupyter notebook wildfire_analysis_part1.ipynb
+   ```
+
+2. Run each cell sequentially to:
+   - Load and preprocess data
+   - Perform exploratory data analysis (EDA)
+   - Generate visualizations
+
+3. Modify parameters or add custom code as needed to explore additional insights.
+
+---
+
+### File Structure
+
+```
+DATA-512-WILDFIRE-ANALYSIS-PART-1
+├── documents
+│   └── DATA 512_ Part 1 - Common Analysis_ Reflection Statement.pdf
+│   └── Pecha Kucha Presentation.pdf
+│   └── Part 2 - An Extension Plan - Navya Eedula.pdf
+├── economy_data
+│   ├── annual_consumer_price_index.csv
+│   ├── annual_per_capita_personal_income.csv
+│   ├── annual_population_data.csv
+│   ├── monthly_active_home_listings.csv
+│   ├── monthly_market_hotness_ranking.csv
+│   ├── monthly_median_price_per_square_foot.csv
+│   ├── monthly_new_home_construction_permits.csv
+│   ├── monthly_unemployment_rate.csv
+│   └── monthly_wage_levels_for_private_sector.csv
+├── economy_indicators_analysis
+│   ├── consumer_goods_market_analysis.ipynb
+│   ├── housing_market_analysis.ipynb
+│   └── wages_and_employment_analysis.ipynb
+├── intermediate_data_files
+│   ├── aqi_yearly.csv
+│   ├── smoke_estimate_data.csv
+│   ├── smoke_estimates_and_predictions.csv
+│   ├── wildfire_df_within_650_miles.csv
+│   └── wildfires_with_distances.csv
+├── modeling_and_forecasting_smoke_estimate
+│   ├── .ipynb_checkpoints
+│   ├── data_acquisition.ipynb
+│   ├── data_visualizations.ipynb
+│   ├── epa_air_quality_history_example.ipynb
+│   ├── modelling.ipynb
+│   └── smoke_estimate.ipynb
+├── LICENSE
+└── README.md
+
+```
+
+---
+
+### Dependencies
+
+## Python Libraries and Dependencies
+
+1. **`pandas`** *(Needs Installation)*
+   A library for data manipulation and analysis, ideal for handling tabular data with DataFrames.
+   - Installation:
+     ```bash
+     pip install pandas
+     ```
+
+2. **`os`** *(Inbuilt)*
+   Provides utilities to interact with the operating system, such as file handling and accessing environment variables.
+
+3. **`plotly.graph_objects`** and **`plotly.subplots`** *(Needs Installation)*
+   Used for creating interactive visualizations and plotting diagnostic plots.
+   - Installation:
+     ```bash
+     pip install plotly
+     ```
+
+4. **`seaborn`** *(Needs Installation)*
+   A statistical data visualization library built on `matplotlib` for creating attractive and informative plots.
+   - Installation:
+     ```bash
+     pip install seaborn
+     ```
+
+5. **`matplotlib.pyplot`** *(Inbuilt in `matplotlib`, Needs Installation)*
+   A library for creating static, animated, and interactive visualizations.
+   - Installation:
+     ```bash
+     pip install matplotlib
+     ```
+
+6. **`scipy.stats`** *(Inbuilt in `scipy`, Needs Installation)*
+   Provides statistical functions and distributions for data analysis.
+   - Installation:
+     ```bash
+     pip install scipy
+     ```
+
+7. **`sklearn.preprocessing.MinMaxScaler`** *(Inbuilt in `scikit-learn`, Needs Installation)*
+   Normalizes data within a specified range (e.g., 0 to 1) for machine learning tasks.
+   - Installation:
+     ```bash
+     pip install scikit-learn
+     ```
+
+8. **`statsmodels.tsa.statespace.SARIMAX`** *(Inbuilt in `statsmodels`, Needs Installation)*
+   Implements SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables) for time series forecasting.
+   - Installation:
+     ```bash
+     pip install statsmodels
+     ```
+
+9. **`sklearn.linear_model.LinearRegression`** *(Inbuilt in `scikit-learn`, Needs Installation)*
+   Provides tools for fitting linear regression models for predictive tasks.
+   - Installation:
+     ```bash
+     pip install scikit-learn
+     ```
+
+10. **`numpy`** *(Needs Installation)*
+    A fundamental library for numerical computing, offering multi-dimensional arrays and mathematical functions for array operations.
+    - Installation:
+      ```bash
+      pip install numpy
+      ```
+---
+
+## Data License
+The wildfire data utilized in this analysis is sourced from public datasets such as the [USGS Wildland Fire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) and the [EPA's Air Quality System (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html). The data is shared under the respective licenses provided by these organizations and is intended for public use and research purposes.
+
+For economic data, we use information from the [FRED Reserve Bank of St. Louis](https://fred.stlouisfed.org/). Users must adhere to their data usage terms and policies.
+
+By using this repository, you agree to comply with the licenses and terms set by these data providers.
+
+## Code License
 Many code example notebooks was developed by Dr. David W. McDonald for use in DATA 512, a course in the UW MS Data Science degree program. This code is provided under the [Creative Commons](https://creativecommons.org) [CC-BY license](https://creativecommons.org/licenses/by/4.0/). Revision 1.1 - August 16, 2024
-
-The following functions and pieces of code were used from Dr. David W. McDonald's Python Notebook File `wildfire_geo_proximity_example.ipynb`:  
+The following functions and pieces of code were used from Dr. David W. McDonald's Python Notebook File `wildfire_geo_proximity_example.ipynb`:
 1. `convert_ring_to_epsg4326`
 2. `shortest_distance_from_place_to_fire_perimeter`
 3.  API Request Template
 4. `request_signup`
 5. `request_list_info`
 6. `request_daily_summary`
-
 The rest of the code lies under the standard MIT license.
 
-### Details about Centennial, Colarado
+## API Documentation
+### Wildfire Data API
+The wildfire data is accessed through the [USGS Wildfire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) and includes data in GeoJSON and ArcGIS formats.
 
-| City       | ST | 2023 Estimate | 2020 Census | 2020 Density (mi²) | Location         |
-|------------|----|---------------|-------------|---------------------|-------------------|
-| Centennial | CO | 106,883       | 108,418     | 3,650               | 39.59°N 104.87°W  |
+### Air Quality Data API
+Air quality data is retrieved using the [EPA AQS API](https://aqs.epa.gov/aqsweb/documents/data_api.html). Detailed API documentation, including endpoints and query parameters, is available [here](https://www.epa.gov/outdoor-air-quality-data).
 
-# API Documentation
-
-## 1. USGS Wildfire Dataset API
-
-The Combined Wildland Fire Dataset API provides access to historical wildfire data across the United States from the 1800s to present.Dataset Access: [https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81)
-
-## 2. EPA Air Quality System (AQS) API
-The EPA AQS API provides historical air quality data across the United States, with standardized measurements beginning in the 1980s.
-
-```
-https://aqs.epa.gov/data/api/
-```
-
-### Authentication
-- Requires API key
-- [Request API key here](https://aqs.epa.gov/data/api/signup)
-- Key must be included in all requests
-
-### Rate Limits
-- Please refer to [EPA's AirData FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata) for current rate limits
+## Research Implications
+This project sheds light on:
+1. The socioeconomic impact of wildfires, particularly in the Denver-Aurora-Lakewood metropolitan area.
+2. The relationship between wildfire smoke and air quality, housing markets, and labor dynamics.
+3. Insights for policymakers to create more effective wildfire mitigation strategies
 
 # Project Workflow
-
-1. **data_acquisition.ipynb**  
+## modeling_and_forecasting_smoke_estimate
+1. **data_acquisition.ipynb**
 This notebook retrieves the wildland fire dataset from the USGS, computes the distance of each fire from Centennial, filters the dataset for the years 1964 to 2024, and produces two CSV files containing selected columns. One file includes all fires that occurred during this time frame, while the other focuses on fires within a 650-mile radius of Madison.
 
-2. **epi_air_quality_history_example.ipynb**  
+2. **epi_air_quality_history_example.ipynb**
 This notebook is designed to obtain AQI data from an API, clean the dataset, calculate any missing AQI values, and ultimately generate a CSV file containing yearly AQI estimates from 1964 to 2024.
 
-3. **smoke_estimate.ipynb**  
+3. **smoke_estimate.ipynb**
 This notebook utilizes the files created by the previous notebooks to calculate smoke estimates and compare these estimates with AQI data for validation purposes.
 
-4. **modelling.ipynb**  
+4. **modelling.ipynb**
 This notebook is employed to develop a time series forecasting model based on smoke estimates, aiming to forecast smoke levels for the next 25 years.
 
-5. **data_visualizations.ipynb**  
+5. **data_visualizations.ipynb**
 This notebook analyzes the data generated thus far using visual representations. It creates three specific visualizations as outlined in the project requirement document.
+
+## economy_indicators_analysis
+1. **consumer_goods_market_analysis.ipynb**
+This notebook presents an analysis related to consumer behavior or market conditions; Annual Consumer Price Index, an indicator of inflation and purchasing power; and Monthly Market Hotness Ranking, a gauge of market activity and consumer interest.
+2. **housing_market_analysis.ipynb**
+This notebook presents a comprehensive analysis of housing market trends and their potential relationship with smoke estimates. The dataset includes key housing market indicators such as monthly active home listings, median price per square foot, and new home construction permits.
+3. **wages_and_employment_analysis.ipynb**
+The notebook examines the forecasted smoke estimate alongside economic indicators such as annual per capita personal income, monthly unemployment rate, and monthly wage levels for the private sector.
 
 # Wildfire Data
 ### Dataset
-The [Combined wildland fire datasets for the United States and certain territories](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81), [1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset has details about all wildfires that have happened over the years all over the US. This dataset was collected and aggregated by the US Geological Survey. The dataset is relatively well documented. The dataset provides fire polygons in ArcGIS and GeoJSON formats. 
+The [Combined wildland fire datasets for the United States and certain territories](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81), [1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset has details about all wildfires that have happened over the years all over the US. This dataset was collected and aggregated by the US Geological Survey. The dataset is relatively well documented. The dataset provides fire polygons in ArcGIS and GeoJSON formats.
 This dataset is almost 2GB in size. Due to file upload limiations on Github, I've not included the dataset in the repository. However, one should be able to find it easily using the above links.
-
-### Data Acquisation: Wildfires in Centennial, CO
-The code for this can be found in the [data_acquisation.ipynb](data_acquisation.ipynb) notebook. Running this notebook end-to-end should produce the necessary wildfire data for the areas surrounding Centennial, CO. 
-
-The required output is stored as a CSV file in [intermediate_files/wildfires_with_distances.csv](intermediate_files/wildfires_with_distances.csv). 
-To analyze only relevant wildfires that are closer to the city, I also created [intermediate_files/wildfire_df_within_650_miles.csv](intermediate_files/wildfire_df_within_650_miles.csv) which filters the wildfires within a 650 mile radius of Centennial, CO. 
 
 # AQI Data
 ### Dataset
 The dataset is sourced from the [U.S. Environmental Protection Agency's (EPA) Air Quality System (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html), which provides historical air quality measurements across the United States. While not offering real-time data, this comprehensive database began standardized monitoring with quality assurance procedures in the 1980s, following the EPA's establishment in the early 1970s. The data collection typically initiated between 1983-1988 for most counties, though coverage varies geographically as some regions still lack monitoring stations. The API offers flexible data retrieval options through station IDs, county designations, or geographic bounding boxes, making it particularly valuable for spatial analysis. The measurements contribute to calculating the Air Quality Index (AQI), a key public health indicator frequently referenced in weather reports and environmental assessments, particularly during smog or smoke events. The technical specifications for AQI calculations follow the [EPA's Technical Assistance Document](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf), ensuring standardized interpretation of air quality conditions. For additional context about the data collection and system specifications, users can refer to the [EPA's AirData FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata), which provides comprehensive background information about the monitoring network and data collection protocols.
 
-### Calculating Annaul Estimate of AQI
-The code for this can be found in the [epa_air_quality_history_example.ipynb](epa_air_quality_history_example.ipynb) notebook. Running this notebook end-to-end should produce the annual AQI estimate values for Centennial, CO.
-
-The required output is stored as a CSV file in [intermediate_files/wildfires_with_distances.csv](intermediate_files/wildfires_with_distances.csv).
-
-# Fomulating Smoke Estimate
-
-I created an annual estimate of wildfire smoke for my assigned city. This estimate served as a numerical value that I could eventually use to develop a predictive model. While technically, the impact of smoke should have encompassed health, tourism, economic, and other social issues resulting from it, I referred to my estimate as the wildfire smoke impact. I planned to explore other potential social and economic effects in Part 2 of the course project. For that moment, I needed a figure to represent the estimated smoke my city experienced during each annual fire season.
-
-Why was this an estimate of fire smoke? These figures were estimates due to several challenges that weren't easy to address, combined with necessary simplifications to make the course project manageable within a few weeks. For example, an accurate smoke impact assessment would have taken into account factors like wind direction over several days, the intensity of the fire, and its duration. However, the fire polygon data only provided a reliable year for each fire, without specific start and end dates.
-
-The code for this can be found in the [smoke_estimate.ipynb](smoke_estimate.ipynb) notebook. Running this notebook end-to-end should produce smoke estimate values originted from wildfires from the years 1964-2020 wihin 650 miles of Centennial, CO.
-
-![image](https://github.com/user-attachments/assets/97ded08d-bf3e-45eb-a5b6-db3442b2add9)
-
-The above line chart shows the trends of two different variables—Average AQI (Air Quality Index) and Smoke Estimates—over time, from 1964 to 2024. Both variables are normalized on a scale from 0 to 1 to allow comparison.
+# Economy Data for the Denver-Aurora-Lakewood Region from the FRED Reserve Bank of St.Louis
+The multiple datasets from the [FRED Reserve Bank of St.Louis](https://fred.stlouisfed.org/) cover a range of economic indicators for the Denver-Aurora-Lakewood, CO metropolitan area (CBSA/MSA) over various time periods. This comprehensive dataset, covering housing, labor, development, wages, prices, and population, will enable a robust analysis of how wildfire smoke events have influenced the economic health and resilience of the Denver-Aurora-Lakewood metropolitan area. By examining these indicators before, during, and after major wildfire occurrences, I can hopefully develop a more nuanced understanding of the far-reaching socioeconomic impacts beyond the immediate physical effects.
 
 
-### Methodology
-I formulated the smoke estimate by incorporating several factors, starting with the **size factor**, which uses a logarithmic transformation of the fire's area in acres to normalize values and assess its correlation with smoke production. The **duration factor** estimates the burn duration based on the fire's perimeter and area, capping the maximum duration at 30 days to reflect realistic limits. Additionally, the **circleness scale** measures the perimeter's circularity, suggesting that more circular fires tend to produce more smoke due to uniform fuel and wind conditions. A categorical variable based on fire classification assigns weights to different fire types, giving higher importance to uncontrolled wildfires. The **distance decay factor** quantifies the impact of proximity to the fire, using a quadratic decay function to reflect reduced smoke effects with increased distance. The final smoke impact calculation combines these factors multiplicatively, offering a comprehensive estimate. Although the model includes several parameters derived from domain knowledge, limitations exist, such as the simplification of atmospheric dynamics and the lack of direct weather data. Future enhancements could involve incorporating additional variables like fuel type, terrain complexity, and real-time weather conditions to improve accuracy and reliability.
+### Contributing
 
-The required output is stored as a CSV file in [intermediate_files/smoke_estimate_data.csv](intermediate_files/smoke_estimate_data.csv)
+Contributions to this project are welcome! To contribute:
 
-# Time Series Model
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Description of changes"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Submit a pull request for review.
 
-The code for this can be found in the [modelling.ipynb](modelling.ipynb) notebook. Running this notebook end-to-end should produce the timeseries model used to forecast smoke estimates till the year 2050. 
-
-In this analysis I used an ARIMAX (AutoRegressive Integrated Moving Average with Exogenous Variables) model to forecast wildfire smoke impacts, integrating external variables like wildfire data into the temporal forecasting framework. This model combines the strengths of time series analysis and regression, capturing both the temporal patterns of smoke estimates and the influences of wildfires on air quality.
-
-The rationale behind using ARIMAX was to leverage known external factors affecting smoke estimates over time, particularly during wildfire months when significant variations in smoke levels occur. While the model shares wildfire data for both estimating and forecasting, this strategy aims to enhance predictive accuracy by capturing trends not reflected in initial estimates.
-![image](https://github.com/user-attachments/assets/649703ed-6f71-4e76-9c3c-e3ff8158e3eb)
-
-The forecast results indicated an upward trend in smoke impact forecasts, consistent with historical data showing increasing fire sizes and frequencies.
-
-
+---
 
 
 
