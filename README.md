@@ -159,6 +159,17 @@ DATA-512-WILDFIRE-ANALYSIS-PART-1
       pip install numpy
       ```
 ---
+# Wildfire Data
+### Dataset
+The [Combined wildland fire datasets for the United States and certain territories](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81), [1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset has details about all wildfires that have happened over the years all over the US. This dataset was collected and aggregated by the US Geological Survey. The dataset is relatively well documented. The dataset provides fire polygons in ArcGIS and GeoJSON formats.
+This dataset is almost 2GB in size. Due to file upload limiations on Github, I've not included the dataset in the repository. However, one should be able to find it easily using the above links.
+
+# AQI Data
+### Dataset
+The dataset is sourced from the [U.S. Environmental Protection Agency's (EPA) Air Quality System (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html), which provides historical air quality measurements across the United States. While not offering real-time data, this comprehensive database began standardized monitoring with quality assurance procedures in the 1980s, following the EPA's establishment in the early 1970s. The data collection typically initiated between 1983-1988 for most counties, though coverage varies geographically as some regions still lack monitoring stations. The API offers flexible data retrieval options through station IDs, county designations, or geographic bounding boxes, making it particularly valuable for spatial analysis. The measurements contribute to calculating the Air Quality Index (AQI), a key public health indicator frequently referenced in weather reports and environmental assessments, particularly during smog or smoke events. The technical specifications for AQI calculations follow the [EPA's Technical Assistance Document](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf), ensuring standardized interpretation of air quality conditions. For additional context about the data collection and system specifications, users can refer to the [EPA's AirData FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata), which provides comprehensive background information about the monitoring network and data collection protocols.
+
+### Economy Data for the Denver-Aurora-Lakewood Region from the FRED Reserve Bank of St.Louis
+The multiple datasets from the [FRED Reserve Bank of St.Louis](https://fred.stlouisfed.org/) cover a range of economic indicators for the Denver-Aurora-Lakewood, CO metropolitan area (CBSA/MSA) over various time periods. This comprehensive dataset, covering housing, labor, development, wages, prices, and population, will enable a robust analysis of how wildfire smoke events have influenced the economic health and resilience of the Denver-Aurora-Lakewood metropolitan area. By examining these indicators before, during, and after major wildfire occurrences, I can hopefully develop a more nuanced understanding of the far-reaching socioeconomic impacts beyond the immediate physical effects.
 
 ## Data License
 The wildfire data utilized in this analysis is sourced from public datasets such as the [USGS Wildland Fire Dataset](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) and the [EPA's Air Quality System (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html). The data is shared under the respective licenses provided by these organizations and is intended for public use and research purposes.
@@ -216,17 +227,7 @@ This notebook presents a comprehensive analysis of housing market trends and the
 3. **wages_and_employment_analysis.ipynb**
 The notebook examines the forecasted smoke estimate alongside economic indicators such as annual per capita personal income, monthly unemployment rate, and monthly wage levels for the private sector.
 
-# Wildfire Data
-### Dataset
-The [Combined wildland fire datasets for the United States and certain territories](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81), [1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset has details about all wildfires that have happened over the years all over the US. This dataset was collected and aggregated by the US Geological Survey. The dataset is relatively well documented. The dataset provides fire polygons in ArcGIS and GeoJSON formats.
-This dataset is almost 2GB in size. Due to file upload limiations on Github, I've not included the dataset in the repository. However, one should be able to find it easily using the above links.
 
-# AQI Data
-### Dataset
-The dataset is sourced from the [U.S. Environmental Protection Agency's (EPA) Air Quality System (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html), which provides historical air quality measurements across the United States. While not offering real-time data, this comprehensive database began standardized monitoring with quality assurance procedures in the 1980s, following the EPA's establishment in the early 1970s. The data collection typically initiated between 1983-1988 for most counties, though coverage varies geographically as some regions still lack monitoring stations. The API offers flexible data retrieval options through station IDs, county designations, or geographic bounding boxes, making it particularly valuable for spatial analysis. The measurements contribute to calculating the Air Quality Index (AQI), a key public health indicator frequently referenced in weather reports and environmental assessments, particularly during smog or smoke events. The technical specifications for AQI calculations follow the [EPA's Technical Assistance Document](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf), ensuring standardized interpretation of air quality conditions. For additional context about the data collection and system specifications, users can refer to the [EPA's AirData FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata), which provides comprehensive background information about the monitoring network and data collection protocols.
-
-# Economy Data for the Denver-Aurora-Lakewood Region from the FRED Reserve Bank of St.Louis
-The multiple datasets from the [FRED Reserve Bank of St.Louis](https://fred.stlouisfed.org/) cover a range of economic indicators for the Denver-Aurora-Lakewood, CO metropolitan area (CBSA/MSA) over various time periods. This comprehensive dataset, covering housing, labor, development, wages, prices, and population, will enable a robust analysis of how wildfire smoke events have influenced the economic health and resilience of the Denver-Aurora-Lakewood metropolitan area. By examining these indicators before, during, and after major wildfire occurrences, I can hopefully develop a more nuanced understanding of the far-reaching socioeconomic impacts beyond the immediate physical effects.
 
 
 ### Contributing
